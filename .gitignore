@@ -1,0 +1,20 @@
+# Ignore PHP config files with secrets
+db.php
+config.php
+.env
+
+# Ignore OS files
+.DS_Store
+
+# Ignore logs
+*.log
+
+# Ignore credentials if any
+*.key
+*.pem
+*.crt
+
+# Ignore backups or temp files
+*.bak
+*.swp
+
