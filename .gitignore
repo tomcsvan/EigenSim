@@ -19,5 +19,8 @@ config.php
 *.swp
 
 # Ignore build folder
-./simulate/bin
+simulate/bin/
+simulate/CMakeFiles
+simulate/CMakeCache.txt
+simulate/cmake_install.cmake
 
