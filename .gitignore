@@ -23,4 +23,5 @@ simulate/bin/
 simulate/CMakeFiles
 simulate/CMakeCache.txt
 simulate/cmake_install.cmake
+simulate/Makefile
 
