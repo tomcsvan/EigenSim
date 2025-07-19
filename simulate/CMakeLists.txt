@@ -25,7 +25,7 @@ message(STATUS "Build eigensim")
 
 # Sources
 add_executable(eigensim ./src/eigensim.cpp)
-add_executable(test_eigensim ./tests/test_eigensim.cpp)
+add_executable(test_libs ./tests/test_libs.cpp)
 
 
 
