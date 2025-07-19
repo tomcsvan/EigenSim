@@ -1,13 +1,14 @@
 #include <httplib.h>
+#include <occi.h>
 #include <spdlog/spdlog.h>
 #include <iostream>
-#include <occi.h>
 
 using std::cout;
 using std::endl;
 
 void test_spdlog() {
     cout << "Testing spdlog..." << endl;
+
     spdlog::info("Welcome to spdlog!");
     spdlog::error("Some error message with arg: {}", 1);
 
@@ -34,8 +35,10 @@ void test_spdlog() {
 
 void test_httplib() {
     cout << "Testing httplib..." << endl;
+
     spdlog::info("Retreiving content from a URL using httplib...");
     httplib::Client cli("https://yhirose.github.io");
+
     auto res = cli.Get("/hi");
     spdlog::info("Response:\n{}", res->body);
     std::cout << std::endl;
@@ -43,14 +46,20 @@ void test_httplib() {
 
 void test_occi() {
     cout << "Testing OCCI..." << endl;
+
+    const std::string username = "system";
+    const std::string password = "password";
+    const std::string url = "localhost:1521/XEPDB1";
+
     try {
-        oracle::occi::Environment *env = oracle::occi::Environment::createEnvironment();
+        oracle::occi::Environment* env =
+            oracle::occi::Environment::createEnvironment();
         oracle::occi::Connection* conn =
-            env->createConnection("system", "password", "localhost:1521/XEPDB1");
-        spdlog::info("Connected to Oracle Database successfully.");
+            env->createConnection(username, password, url);
+        spdlog::info("Connected to Oracle Database: {}", url);
         env->terminateConnection(conn);
         oracle::occi::Environment::terminateEnvironment(env);
-    } catch (const oracle::occi::SQLException &e) {
+    } catch (const oracle::occi::SQLException& e) {
         spdlog::error("OCCI Error: {}", e.getMessage());
     }
 }
