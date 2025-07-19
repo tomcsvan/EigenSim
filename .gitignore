@@ -18,3 +18,6 @@ config.php
 *.bak
 *.swp
 
+# Ignore build folder
+./simulate/bin
+
