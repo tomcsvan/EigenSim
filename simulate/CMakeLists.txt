@@ -8,19 +8,17 @@ project(eigensim VERSION 0.1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "./bin")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Wextra -Wpedantic -Werror")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O2 -Wall -Wextra -Wpedantic -Werror")
+
+# Dependencies
+include_directories("./include")
+link_libraries(occi clntsh)
 
 # Options
 httplib_use_openssl()   # allow connection over HTTPS
 
-# Dependencies
-include_directories("./include")
-
 # Sources
 add_executable(eigensim ./src/eigensim.cpp)
+
+# Tests
 add_executable(test_libs ./tests/test_libs.cpp)
-
-
-
-
-

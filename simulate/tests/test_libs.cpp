@@ -1,6 +1,7 @@
 #include <httplib.h>
 #include <spdlog/spdlog.h>
 #include <iostream>
+#include <occi.h>
 
 using std::cout;
 using std::endl;
@@ -40,9 +41,24 @@ void test_httplib() {
     std::cout << std::endl;
 }
 
+void test_occi() {
+    cout << "Testing OCCI..." << endl;
+    try {
+        oracle::occi::Environment *env = oracle::occi::Environment::createEnvironment();
+        oracle::occi::Connection* conn =
+            env->createConnection("system", "password", "localhost:1521/XEPDB1");
+        spdlog::info("Connected to Oracle Database successfully.");
+        env->terminateConnection(conn);
+        oracle::occi::Environment::terminateEnvironment(env);
+    } catch (const oracle::occi::SQLException &e) {
+        spdlog::error("OCCI Error: {}", e.getMessage());
+    }
+}
+
 int main() {
     test_spdlog();
     test_httplib();
+    test_occi();
     spdlog::info("Test completed successfully.");
     return 0;
 }

@@ -4,6 +4,8 @@ Server-side code for EigenSim
 
 - A C++ compiler
 - CMake
+- Oracle Instant Client
+- A running OracleDB server
 
 
 ## Installation
@@ -17,6 +19,31 @@ brew install llvm # C++ compiler suite
 brew install cmake
 ```
 
+For the Oracle Instant Client, follow the instruction to download and install Basic Package for your platform [here](https://www.oracle.com/database/technologies/instant-client/downloads.html).
+
+For the OracleDB server, either connect to the one provided by UBC or create one yourself using Docker:
+- Download Docker: `brew install docker`
+- Pull the image: `docker pull container-registry.oracle.com/database/express:21.3.0-xe`
+- Run the image: 
+    ```sh
+    docker run  -d --name oracle-xe \
+                -p 1521:1521 -p 5500:5500 \
+                -e ORACLE_PWD=password \
+                container-registry.oracle.com/database/express:21.3.0-xe
+    ```
+
+Now we can connect to the server using the following credentials:
+- username: `system`
+- password: `password` (the one we set earlier)
+- URL: `localhost:1521/XEPDB1` (also note how we exposed port 1521 using the command above)
+
+For example, using OCCI:
+
+```cpp
+oracle::occi::Environment *env = oracle::occi::Environment::createEnvironment();
+oracle::occi::Connection* conn =
+            env->createConnection("system", "password", "localhost:1521/XEPDB1");
+```
 
 ## Running
 
@@ -33,7 +60,7 @@ Then head to the `bin` folder, and use the following executables:
 
 
 
-## API designs
+## API designs (heavily WIP)
 
 ### `GET /`
 
