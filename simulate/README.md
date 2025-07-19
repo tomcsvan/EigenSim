@@ -20,6 +20,8 @@ brew install cmake
 
 ## Running
 
+Make sure that you are on the `simulate` folder, then:
+
 ```
 cmake .
 cmake --build .
