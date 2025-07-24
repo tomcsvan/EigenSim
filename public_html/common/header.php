@@ -1,27 +1,40 @@
 <?php
-
-// Start the session
-session_start();
-
-// Set content type
-header('Content-Type: text/html; charset=utf-8');
-
-// Include necessary files
-include_once 'config.php'; // Database configuration
-include_once 'functions.php'; // Common functions
-
-// HTML header
-echo '<!DOCTYPE html>';
-echo '<html lang="en">';
-echo '<head>';
-echo '<meta charset="UTF-8">';
-echo '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
-echo '<title>EigenSim - Algorithmic Trading Platform</title>';
-echo '<link rel="stylesheet" href="../assets/styles.css">';
-echo '</head>';
-echo '<body>';
-
-echo '<section id="tittle">';
-
-echo '</>';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+include 'common/db.php';
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EigenSim - Algorithmic Trading Platform</title>
+  <link rel="stylesheet" href="/~tomcsvan/assets/styles.css">
+</head>
+<body>
+<header id="header">
+  <div class="header-left">
+    <img src="/~tomcsvan/assets/logo.png" alt="EigenSim Logo" id="icon">
+    <h1>EigenSim</h1>
+  </div>
+  <nav class="header-right">
+    <ul class="tabs">
+      <li><a href="/~tomcsvan/index.php">Home</a></li>
+
+      <?php if (isset($_SESSION['user_id'])): ?>
+        <li><a href="/~tomcsvan/run.php">Run</a></li>
+
+        <li class="dropdown">
+          <a href="#">Account</a>
+          <ul class="dropdown-content">
+            <li><a href="/~tomcsvan/account.php">Account Settings</a></li>
+            <li><a href="/~tomcsvan/logout.php">Logout</a></li>
+          </ul>
+        </li>
+      <?php else: ?>
+        <li><a href="/~tomcsvan/login.php">Login</a></li>
+      <?php endif; ?>
+    </ul>
+  </nav>
+</header>
+<div id="main">

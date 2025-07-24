@@ -1,0 +1,367 @@
+/* ========== GLOBAL RESET ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ========== HEADER ========== */
+#header {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f3f3f3;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-left {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#icon {
+    max-height: 100%;
+}
+
+/* Nav bar */
+.header-right {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+    position: relative; /* for dropdowns */
+}
+
+ul {
+    list-style: none;
+    gap: 20px;
+}
+
+.tabs {
+    display: flex;
+}
+
+.header-right a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.header-right a:hover {
+    text-decoration: underline;
+}
+
+
+/* ========== DROPDOWN MENU ========== */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    min-width: 160px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-content li {
+    padding: 10px;
+    white-space: nowrap;
+}
+
+.dropdown-content li a {
+    color: #333;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-content li a:hover {
+    background-color: #e2e2e2;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* ========== MAIN CONTENT ========== */
+#main {
+    flex: 1;
+    width: 100vw;
+    /* background-color: black; */
+    overflow-y: auto;
+}
+
+
+/* ========== FORMS ========== */
+.form-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    background-color: #f9f9f9;
+}
+
+.form-container input,
+.form-container button {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+    border: 1px solid #ccc;
+}
+
+.form-container .error {
+    color: red;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-container .success {
+    color: green;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* ========== DASHBOARD CARDS ========== */
+.dashboard-container {
+    padding: 2rem;
+    color: white;
+}
+
+.dashboard-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.dashboard-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #1e1e1e;
+    border: 1px solid #444;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    width: 250px;
+    text-align: center;
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+.card h3 {
+    margin-bottom: 0.5rem;
+    color: #00ffff;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #00ffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px #00ffff44;
+}
+
+
+/* ========== FOOTER ========== */
+footer {
+    height: 5vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#footer-left {
+    padding-left: 10px;
+}
+
+#footer-right {
+    padding-right: 10px;
+}
+
+/* ========== Account ========== */
+
+/* Layout */
+.account-layout {
+    display: flex;
+    height: 100%;
+    background-color: white;
+}
+
+.account-sidebar {
+    width: 220px;
+    background-color: #f5f5f5;
+    border-right: 1px solid #ccc;
+    padding-top: 2rem;
+}
+
+.account-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.account-sidebar li {
+    margin: 0;
+}
+
+.account-sidebar a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    border-left: 4px solid transparent;
+}
+
+.account-sidebar a:hover,
+.account-sidebar a.active {
+    background-color: #e6e6e6;
+    border-left: 4px solid #00cccc;
+    color: #000;
+}
+
+.account-content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+/* Summary */
+.summary-card {
+    background-color: #f5f5f5;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-top: 1rem;
+}
+
+.summary-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+}
+
+.summary-item {
+    text-align: center;
+}
+
+.summary-item .icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.summary-item h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.2rem;
+}
+
+.summary-item p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* ========== Account Settings Form (Integrated Style) ========== */
+.account-content form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem 2rem;
+    max-width: 600px;
+    padding-top: 1rem;
+}
+
+.account-content label {
+    font-weight: 500;
+    align-self: center;
+    color: #222;
+}
+
+.account-content input[type="text"],
+.account-content input[type="password"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    width: 100%;
+    background-color: #fff;
+}
+
+.account-content button[type="submit"] {
+    grid-column: 2;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 1rem;
+}
+
+.account-content button[type="submit"]:hover {
+    background-color: #1d4ed8;
+}
+
+.account-row {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+#edit-button,
+#cancel-button {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 1rem;
+}
+
+#edit-button:hover,
+#cancel-button:hover {
+    background-color: #ddd;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+    grid-column: 2;
+}
