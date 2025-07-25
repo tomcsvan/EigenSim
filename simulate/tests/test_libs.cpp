@@ -1,5 +1,10 @@
 #include <httplib.h>
-#include <occi.h>
+
+#ifdef _WIN64
+#include <Windows.h>
+#endif
+
+// #include <occi.h>
 #include <spdlog/spdlog.h>
 #include <iostream>
 
@@ -37,37 +42,37 @@ void test_httplib() {
     cout << "Testing httplib..." << endl;
 
     spdlog::info("Retreiving content from a URL using httplib...");
-    httplib::Client cli("https://yhirose.github.io");
+    httplib::Client cli("http://yhirose.github.io");
 
     auto res = cli.Get("/hi");
     spdlog::info("Response:\n{}", res->body);
     std::cout << std::endl;
 }
 
-void test_occi() {
-    cout << "Testing OCCI..." << endl;
+// void test_occi() {
+//     cout << "Testing OCCI..." << endl;
 
-    const std::string username = "system";
-    const std::string password = "password";
-    const std::string url = "localhost:1521/XEPDB1";
+//     const std::string username = "system";
+//     const std::string password = "password";
+//     const std::string url = "localhost:1521/XEPDB1";
 
-    try {
-        oracle::occi::Environment* env =
-            oracle::occi::Environment::createEnvironment();
-        oracle::occi::Connection* conn =
-            env->createConnection(username, password, url);
-        spdlog::info("Connected to Oracle Database: {}", url);
-        env->terminateConnection(conn);
-        oracle::occi::Environment::terminateEnvironment(env);
-    } catch (const oracle::occi::SQLException& e) {
-        spdlog::error("OCCI Error: {}", e.getMessage());
-    }
-}
+//     try {
+//         oracle::occi::Environment* env =
+//             oracle::occi::Environment::createEnvironment();
+//         oracle::occi::Connection* conn =
+//             env->createConnection(username, password, url);
+//         spdlog::info("Connected to Oracle Database: {}", url);
+//         env->terminateConnection(conn);
+//         oracle::occi::Environment::terminateEnvironment(env);
+//     } catch (const oracle::occi::SQLException& e) {
+//         spdlog::error("OCCI Error: {}", e.getMessage());
+//     }
+// }
 
 int main() {
     test_spdlog();
     test_httplib();
-    test_occi();
+    // test_occi();
     spdlog::info("Test completed successfully.");
     return 0;
 }
