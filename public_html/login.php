@@ -18,8 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST['password']);
 
     if (!empty($username) && !empty($password)) {
-        $stmt = oci_parse($conn,
-            "SELECT user_id, password_hash 
+        $stmt = oci_parse($conn, "
+            SELECT user_id, password_hash 
             FROM Users 
             WHERE LOWER(user_id) = LOWER(:username)");
         oci_bind_by_name($stmt, ':username', $username);
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php include 'common/header.php' ; ?>
 
-<h2>Login</h2>
+<h2 style="text-align:center; font-size:1.8rem; color:#00cccc; margin-bottom:1rem;">Login</h2>
 <div class="form-container">
     <?php if (!empty($error)) echo "<p class='error'>$error</p>"; ?>
     <form method="POST" action="login.php">

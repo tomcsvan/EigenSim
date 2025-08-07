@@ -16,8 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($username) && !empty($firstname) && !empty($lastname) && !empty($password)) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $stmt = oci_parse($conn, "INSERT INTO Users (user_id, first_name, last_name, password_hash)
-                                  VALUES (:username, :firstname, :lastname, :password_hash)");
+        $stmt = oci_parse($conn, "
+            INSERT INTO Users (user_id, first_name, last_name, password_hash)
+            VALUES (:username, :firstname, :lastname, :password_hash)");
 
         oci_bind_by_name($stmt, ':username', $username);
         oci_bind_by_name($stmt, ':firstname', $firstname);
@@ -27,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = oci_execute($stmt);
 
         if ($result) {
+            oci_commit($conn);
             $success = "Registration successful! <a href='login.php'>Click here to login</a>.";
         } else {
             $e = oci_error($stmt);

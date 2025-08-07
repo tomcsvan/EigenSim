@@ -19,11 +19,9 @@ include 'common/db.php';
   </div>
   <nav class="header-right">
     <ul class="tabs">
-      <li><a href="/~tomcsvan/index.php">Home</a></li>
-
       <?php if (isset($_SESSION['user_id'])): ?>
-        <li><a href="/~tomcsvan/run.php">Run</a></li>
-
+        <li><a href="/~tomcsvan/dashboard.php">Dashboard</a></li>
+        <li><a href="/~tomcsvan/backtest_select_ticker.php">Backtest</a></li>
         <li class="dropdown">
           <a href="#">Account</a>
           <ul class="dropdown-content">
@@ -32,6 +30,7 @@ include 'common/db.php';
           </ul>
         </li>
       <?php else: ?>
+        <li><a href="/~tomcsvan/index.php">Home</a></li>
         <li><a href="/~tomcsvan/login.php">Login</a></li>
       <?php endif; ?>
     </ul>
