@@ -25,3 +25,4 @@ simulate/CMakeCache.txt
 simulate/cmake_install.cmake
 simulate/Makefile
 
+common/polygon_api.php
